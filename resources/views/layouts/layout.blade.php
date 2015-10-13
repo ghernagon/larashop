@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Home | E-Shopper</title>
+        <meta name="description" content="{{$description}}">
+        <meta name="author" content="Rodrick Kazembe">
+        <title>{{$title}} - Larashop</title>
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
         <link href="{{asset('css/prettyPhoto.css')}}" rel="stylesheet">
@@ -15,7 +15,6 @@
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
         <!--[if lt IE 9]>
         <script src="{{asset('js/html5shiv.js')}}"></script>
-        <a href="../../../../../../Downloads/Eshopper/index.html"></a>
         <script src="{{asset('js/respond.min.js')}}"></script>
         <![endif]-->       
         <link rel="shortcut icon" href="{{asset('images/ico/favicon.ico')}}">

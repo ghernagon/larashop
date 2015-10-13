@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-<h2>{{$name}}</h2>
+<h2>{{$name}}</h2>    
 <p>This is my body content.</p>
-<h2>If statement</h2>
+<h2>If Statement</h2>
 @if ($day == 'Friday')
     <p>Time to party</p>
 @else
@@ -23,13 +23,6 @@
 {{$drink}} <br>
 @endforeach
 
-<h2>Execute PHP Functions</h2>
-<?php if ($day == 'Friday') { 
-    echo 'Hoy es viernes <br>';
-    
-    foreach ($drinks as $drink) {
-        echo "<br>".$drink;
-    }
-}?>
+<h2>Execute PHP Function</h2>
 <p>The date is {{date(' D M, Y')}}</p>
 @endsection

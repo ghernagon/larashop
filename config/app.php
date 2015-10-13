@@ -144,6 +144,11 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        /*
+         * LaravelIdeHelper...
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 
