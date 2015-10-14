@@ -41,6 +41,34 @@ Route::get('/checkout', [
     'uses' => 'Front@checkout'
 ]);
 
+
+// API routes...
+Route::get('/api/v1/products/{id?}', [function($id = null) {
+    if ($id == null) {
+        $products = App\Product::all(array('id', 'name', 'price'));
+    } else {
+        $products = App\Product::find($id, array('id', 'name', 'price'));
+    }
+    return Response::json(array(
+        'error' => false,
+        'products' => $products,
+        'status_code' => 200
+    ));
+}]);
+
+Route::get('/api/v1/categories/{id?}', ['middleware' => 'auth.basic', function($id = null) {
+    if ($id == null) {
+        $categories = App\Category::all(array('id', 'name'));
+    } else {
+        $categories = App\Category::find($id, array('id', 'name'));
+    }
+    return Response::json(array(
+        'error' => false,
+        'user' => $categories,
+        'status_code' => 200
+    ));
+}]);
+
 //Route:get('blade', function() { 
 //    $drinks = array('Vodka', 'Gin', 'Brandy');
 //    return view('page', array('name' => "The Raven", 'day' => 'Friday', 'drinks' => $drinks));    
