@@ -3,6 +3,9 @@
 @section('content')
     <section id="form"><!--form-->
         <div class="container">
+            @if($mensaje)
+                <div class="alert alert-danger">{{$mensaje}}</div>
+            @endif
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="login-form"><!--login form-->

@@ -122,12 +122,13 @@ class Front extends Controller {
         if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
             return redirect()->intended('checkout');
         } else {
-            return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
+            $mensaje = 'Username or password incorrect, please try again';
+            return view('login', array('mensaje' => $mensaje, 'title' => 'Welcome', 'description' => '', 'page' => 'home'));
         }
     }
 
     public function login() {
-        return view('login', array('title' => 'Welcome','description' => '','page' => 'home'));
+        return view('login', array('mensaje' => '', 'title' => 'Welcome', 'description' => '', 'page' => 'home'));
     }
 
     public function logout() {
