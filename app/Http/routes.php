@@ -22,10 +22,24 @@ Route::get('/contact-us','Front@contact_us');
 Route::get('/login','Front@login');
 Route::get('/logout','Front@logout');
 Route::get('/cart','Front@cart');
-Route::get('/checkout','Front@checkout');
+//Route::get('/checkout','Front@checkout');
 Route::get('/search/{query}','Front@search');
 
 Route::post('/cart', 'Front@cart');
+
+// Authentication routes...
+Route::get('auth/login', 'Front@login');
+Route::post('auth/login', 'Front@authenticate');
+Route::get('auth/logout', 'Front@logout');
+
+// Registration routes...
+Route::post('/register', 'Front@register');
+
+//Protect the checkout url just for logged in users
+Route::get('/checkout', [
+    'middleware' => 'auth',
+    'uses' => 'Front@checkout'
+]);
 
 //Route:get('blade', function() { 
 //    $drinks = array('Vodka', 'Gin', 'Brandy');

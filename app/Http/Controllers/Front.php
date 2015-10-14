@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class Front extends Controller {
 
     var $brands;
@@ -58,14 +61,6 @@ class Front extends Controller {
         return view('contact_us', array('title' => 'Welcome','description' => '','page' => 'contact_us'));
     }
 
-    public function login() {
-        return view('login', array('title' => 'Welcome','description' => '','page' => 'home'));
-    }
-
-    public function logout() {
-        return view('login', array('title' => 'Welcome','description' => '','page' => 'home'));
-    }
-
     public function cart() {
         if (Request::isMethod('post')) {
             $product_id = Request::get('product_id');
@@ -109,5 +104,35 @@ class Front extends Controller {
 
     public function search($query) {
         return view('products', array('title' => 'Welcome','description' => '','page' => 'products'));
+    }
+
+    public function register() {
+        if (Request::isMethod('post')) {
+            User::create([
+                'name' => Request::get('name'),
+                'email' => Request::get('email'),
+                'password' => bcrypt(Request::get('password')),
+            ]);
+        }
+
+        return Redirect::away('login');
+    }
+
+    public function authenticate() {
+        if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
+            return redirect()->intended('checkout');
+        } else {
+            return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
+        }
+    }
+
+    public function login() {
+        return view('login', array('title' => 'Welcome','description' => '','page' => 'home'));
+    }
+
+    public function logout() {
+        Auth::logout();
+
+        return Redirect::away('login');
     }
 }
